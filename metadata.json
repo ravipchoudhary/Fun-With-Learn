@@ -1,0 +1,12 @@
+{
+  "name": "Fun With Learn",
+  "description": "Interactive EdTech platform with live classes, recorded video libraries, adaptive student & teacher dashboards, active simulated WebRTC video learning, and server-side Gemini AI workspace recommendations.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
