@@ -30,7 +30,8 @@ function getAiClient(): GoogleGenAI {
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
+  const isDevelopment = process.env.NODE_ENV === 'development';
 
   // Middleware
   app.use(express.json());
@@ -175,7 +176,7 @@ async function startServer() {
   });
 
   // Serve static files / Vite Dev server middleware
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDevelopment) {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
@@ -185,12 +186,15 @@ async function startServer() {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
+      if (req.path.startsWith('/api/')) {
+        return res.status(404).json({ error: 'API endpoint not found' });
+      }
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server successfully started. Listening at http://0.0.0.0:${PORT}`);
+    console.log(`Server successfully started in ${isDevelopment ? 'development' : 'production'} mode. Listening at http://0.0.0.0:${PORT}`);
   });
 }
 
