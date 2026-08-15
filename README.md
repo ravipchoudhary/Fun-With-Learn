@@ -25,7 +25,7 @@ View your app in AI Studio: https://ai.studio/apps/c144e8dc-619c-4022-8317-cca6f
    `npm install`
 3. Create `.env` with:
    ```bash
-   PORT=3000
+   PORT=4000
    NODE_ENV=production
    GEMINI_API_KEY=your_gemini_api_key_here
    ```

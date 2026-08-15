@@ -30,7 +30,7 @@ function getAiClient(): GoogleGenAI {
 
 async function startServer() {
   const app = express();
-  const PORT = Number(process.env.PORT) || 3000;
+  const PORT = Number(process.env.PORT) || 4000;
   const isDevelopment = process.env.NODE_ENV === 'development';
 
   // Middleware
