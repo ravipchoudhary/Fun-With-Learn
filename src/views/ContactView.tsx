@@ -122,11 +122,11 @@ export default function ContactView() {
             <div className="space-y-4 text-xs text-slate-350">
               <div className="flex items-center gap-3">
                 <MapPin className="text-indigo-500" size={16} />
-                <span>Outer Ring Road, Block B, Bengaluru, KA - 560103.</span>
+                <span>Greater Noida, Uttar Pradesh, 201318</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-purple-500" size={16} />
-                <span>+91 80 4390 1200 / +91 9901 02830</span>
+                <span>9903833795</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="text-emerald-500" size={16} />

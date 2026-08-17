@@ -6,13 +6,22 @@ interface AdminDashboardProps {
   initialCourses: Course[];
   initialLiveClasses: LiveClass[];
   userName: string;
+  summary?: any;
 }
 
 export default function AdminDashboard({
   initialCourses,
   initialLiveClasses,
   userName,
+  summary,
 }: AdminDashboardProps) {
+  const summaryStats = summary?.stats || [
+    { label: 'Global Revenue', value: '₹1,42,500', tone: 'indigo' },
+    { label: 'Accounts Count', value: '5 logged', tone: 'purple' },
+    { label: 'Syllabus coverage', value: String(initialCourses.length), tone: 'emerald' },
+    { label: 'Model provider', value: 'Gemini 3.5 Flash', tone: 'amber' },
+  ];
+
   // Activity state logs simulated list
   const [logs, setLogs] = useState<string[]>([
     'System initialization successful - Express + Vite server ready',
@@ -21,7 +30,7 @@ export default function AdminDashboard({
     'AI Course recommendations generated for student - Gemini-3.5-flash',
   ]);
 
-  const [usersList, setUsersList] = useState([
+  const [usersList, setUsersList] = useState<any[]>(summary?.users || [
     { name: 'Suhani Malhotra', email: 'suhani@boardscore.com', role: 'Student', plan: 'Premium' },
     { name: 'Dr. Ramesh Sharma', email: 'ramesh@funwithlearn.edu', role: 'Teacher', plan: 'None' },
     { name: 'Pranav Joshi', email: 'pranav_joshi@gmail.com', role: 'Student', plan: 'Standard' },
@@ -38,30 +47,18 @@ export default function AdminDashboard({
       
       {/* Overview stats cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-slate-900 border border-slate-850 p-6 rounded-2xl text-white">
-          <LineChart className="text-indigo-500 mb-2" size={20} />
-          <span className="block text-[10px] font-mono tracking-widest text-slate-450 uppercase">Global Revenue</span>
-          <span className="block font-sans font-black text-2xl mt-1">₹1,42,500</span>
-          <span className="block text-[9px] text-emerald-400 mt-1">📈 +18% this week</span>
-        </div>
-        <div className="bg-slate-900 border border-slate-850 p-6 rounded-2xl text-white">
-          <Users className="text-purple-500 mb-2" size={20} />
-          <span className="block text-[10px] font-mono tracking-widest text-slate-450 uppercase">Accounts Count</span>
-          <span className="block font-sans font-black text-2xl mt-1">{usersList.length + 1} logged</span>
-          <span className="block text-[9px] text-slate-400 mt-1">Student, Teacher & Admin</span>
-        </div>
-        <div className="bg-slate-900 border border-slate-850 p-6 rounded-2xl text-white">
-          <CheckSquare className="text-emerald-500 mb-2" size={20} />
-          <span className="block text-[10px] font-mono tracking-widest text-slate-450 uppercase">Syllabus coverage</span>
-          <span className="block font-sans font-black text-2xl mt-1">{initialCourses.length} active</span>
-          <span className="block text-[9px] text-slate-400 mt-1">Class 6 to Board levels 12</span>
-        </div>
-        <div className="bg-slate-900 border border-slate-850 p-6 rounded-2xl text-white">
-          <Settings className="text-amber-500 mb-2" size={20} />
-          <span className="block text-[10px] font-mono tracking-widest text-slate-450 uppercase">Model provider</span>
-          <span className="block font-sans font-black text-lg mt-1">Gemini 3.5 Flash</span>
-          <span className="block text-[9px] text-slate-400 mt-1">Server-side execution</span>
-        </div>
+        {summaryStats.map((stat: any, index: number) => {
+          const Icon = index === 0 ? LineChart : index === 1 ? Users : index === 2 ? CheckSquare : Settings;
+          const color = index === 0 ? 'text-indigo-500' : index === 1 ? 'text-purple-500' : index === 2 ? 'text-emerald-500' : 'text-amber-500';
+          return (
+            <div key={stat.label} className="bg-slate-900 border border-slate-850 p-6 rounded-2xl text-white">
+              <Icon className={color + ' mb-2'} size={20} />
+              <span className="block text-[10px] font-mono tracking-widest text-slate-450 uppercase">{stat.label}</span>
+              <span className="block font-sans font-black text-2xl mt-1">{stat.value}</span>
+              <span className="block text-[9px] text-emerald-400 mt-1">{index === 0 ? '📈 +18% this week' : index === 1 ? 'Student, Teacher & Admin' : index === 2 ? 'Class 6 to Board levels 12' : 'Server-side execution'}</span>
+            </div>
+          );
+        })}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

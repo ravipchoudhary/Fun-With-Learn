@@ -8,6 +8,7 @@ interface TeacherDashboardProps {
   recordedVideos: RecordedVideo[];
   setRecordedVideos: (v: RecordedVideo[] | ((prev: RecordedVideo[]) => RecordedVideo[])) => void;
   onUserIncrementXp: (amount: number) => void;
+  summary?: any;
 }
 
 export default function TeacherDashboard({
@@ -16,7 +17,17 @@ export default function TeacherDashboard({
   recordedVideos,
   setRecordedVideos,
   onUserIncrementXp,
+  summary,
 }: TeacherDashboardProps) {
+  const metricCards = summary?.stats || [
+    { label: 'Earnings Analytics', value: '₹42,500', tone: 'emerald' },
+    { label: 'Total Enrolled Students', value: '3,421', tone: 'indigo' },
+    { label: 'Syllabus Classrooms', value: `${liveClasses.length} Scheduled`, tone: 'purple' },
+    { label: 'Recorded Modules', value: `${recordedVideos.length} Modules`, tone: 'amber' },
+  ];
+  const displayedClasses = summary?.liveClasses || liveClasses;
+  const displayedVideos = summary?.recordedVideos || recordedVideos;
+
   // Scheduling Form State
   const [liveTitle, setLiveTitle] = useState('');
   const [liveSubject, setLiveSubject] = useState('Physics');
@@ -86,26 +97,18 @@ export default function TeacherDashboard({
       
       {/* 1. Analytic grid displays */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-6 rounded-2xl shadow-sm text-center">
-          <DollarSign className="text-emerald-500 mx-auto" size={24} />
-          <span className="block font-sans font-black text-slate-900 dark:text-white text-2xl mt-1">₹42,500</span>
-          <span className="block text-[9px] text-slate-400 uppercase tracking-widest mt-1">Earnings Analytics</span>
-        </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-6 rounded-2xl shadow-sm text-center">
-          <Users className="text-indigo-500 mx-auto" size={24} />
-          <span className="block font-sans font-black text-slate-900 dark:text-white text-2xl mt-1">3,421</span>
-          <span className="block text-[9px] text-slate-400 uppercase tracking-widest mt-1">Total Enrolled Students</span>
-        </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-6 rounded-2xl shadow-sm text-center">
-          <Calendar className="text-purple-500 mx-auto" size={24} />
-          <span className="block font-sans font-black text-slate-900 dark:text-white text-2xl mt-1">{liveClasses.length} Scheduled</span>
-          <span className="block text-[9px] text-slate-400 uppercase tracking-widest mt-1">Syllabus Classrooms</span>
-        </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-6 rounded-2xl shadow-sm text-center">
-          <Video className="text-amber-500 mx-auto" size={24} />
-          <span className="block font-sans font-black text-slate-900 dark:text-white text-2xl mt-1">{recordedVideos.length} Modules</span>
-          <span className="block text-[9px] text-slate-400 uppercase tracking-widest mt-1">Recorded Syllabus Library</span>
-        </div>
+        {metricCards.map((metric: any, index: number) => {
+          const Icon = index === 0 ? DollarSign : index === 1 ? Users : index === 2 ? Calendar : Video;
+          const color = index === 0 ? 'text-emerald-500' : index === 1 ? 'text-indigo-500' : index === 2 ? 'text-purple-500' : 'text-amber-500';
+
+          return (
+            <div key={metric.label} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-6 rounded-2xl shadow-sm text-center">
+              <Icon className={color + ' mx-auto'} size={24} />
+              <span className="block font-sans font-black text-slate-900 dark:text-white text-2xl mt-1">{metric.value}</span>
+              <span className="block text-[9px] text-slate-400 uppercase tracking-widest mt-1">{metric.label}</span>
+            </div>
+          );
+        })}
       </div>
 
       {/* Forms Grid alignment */}

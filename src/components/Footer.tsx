@@ -64,10 +64,10 @@ export default function Footer({ setCurrentTab }: FooterProps) {
         <div>
           <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">India Head Office</h4>
           <p className="text-sm leading-relaxed text-slate-400 mb-3">
-            Fun With Learn Space, Block B, Outer Ring Road, Bengaluru, Karnataka - 560103.
+            Greater Noida, Uttar Pradesh, 201318
           </p>
           <p className="text-sm font-semibold text-indigo-400">support@funwithlearn.edu</p>
-          <p className="text-xs text-slate-500 mt-4">Simulated phone: +91 80 4390 1200</p>
+          <p className="text-xs text-slate-500 mt-4">Phone: 9903833795</p>
         </div>
       </div>
 

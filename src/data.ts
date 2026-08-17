@@ -1,6 +1,14 @@
 import { Course, LiveClass, RecordedVideo, SubscriptionPlan, ClassLevel } from './types';
 
 export const CLASS_LEVELS: ClassLevel[] = [
+  'Nursery',
+  'LKG',
+  'UKG',
+  'Class 1',
+  'Class 2',
+  'Class 3',
+  'Class 4',
+  'Class 5',
   'Class 6',
   'Class 7',
   'Class 8',
@@ -8,6 +16,190 @@ export const CLASS_LEVELS: ClassLevel[] = [
   'Class 10',
   'Class 11',
   'Class 12'
+];
+
+export const LMS_CLASS_STRUCTURE: Record<string, { id: string; name: string; icon: string; chapters: any[]; completedChapters: number; totalChapters: number; progress: number }[]> = {
+  'Class 5': [
+    {
+      id: 'math-5',
+      name: 'Mathematics',
+      icon: '∑',
+      chapters: [
+        { id: 'c1', name: 'Numbers', progress: 80, completedTopics: 8, totalTopics: 10, lessonType: 'Practice' },
+        { id: 'c2', name: 'Fractions', progress: 72, completedTopics: 7, totalTopics: 10, lessonType: 'Quiz' },
+        { id: 'c3', name: 'Decimals', progress: 64, completedTopics: 6, totalTopics: 10, lessonType: 'Video' },
+        { id: 'c4', name: 'Geometry', progress: 58, completedTopics: 5, totalTopics: 9, lessonType: 'Activity' },
+        { id: 'c5', name: 'Measurement', progress: 76, completedTopics: 7, totalTopics: 9, lessonType: 'Test' }
+      ],
+      completedChapters: 3,
+      totalChapters: 5,
+      progress: 70
+    },
+    {
+      id: 'science-5',
+      name: 'Science',
+      icon: '🔬',
+      chapters: [
+        { id: 's1', name: 'Plants', progress: 84, completedTopics: 8, totalTopics: 10, lessonType: 'Learn' },
+        { id: 's2', name: 'Human Body', progress: 60, completedTopics: 6, totalTopics: 10, lessonType: 'Quiz' },
+        { id: 's3', name: 'Air & Water', progress: 74, completedTopics: 7, totalTopics: 9, lessonType: 'Test' }
+      ],
+      completedChapters: 2,
+      totalChapters: 3,
+      progress: 73
+    },
+    {
+      id: 'english-5',
+      name: 'English',
+      icon: '📘',
+      chapters: [
+        { id: 'e1', name: 'Grammar', progress: 78, completedTopics: 7, totalTopics: 9, lessonType: 'Practice' },
+        { id: 'e2', name: 'Comprehension', progress: 68, completedTopics: 6, totalTopics: 9, lessonType: 'Learn' }
+      ],
+      completedChapters: 1,
+      totalChapters: 2,
+      progress: 71
+    }
+  ],
+  'Class 10': [
+    {
+      id: 'math-10',
+      name: 'Mathematics',
+      icon: '∑',
+      chapters: [
+        { id: 'm1', name: 'Real Numbers', progress: 82, completedTopics: 11, totalTopics: 13, lessonType: 'Learn' },
+        { id: 'm2', name: 'Polynomials', progress: 76, completedTopics: 9, totalTopics: 12, lessonType: 'Quiz' },
+        { id: 'm3', name: 'Triangles', progress: 70, completedTopics: 8, totalTopics: 11, lessonType: 'Video' },
+        { id: 'm4', name: 'Trigonometry', progress: 69, completedTopics: 10, totalTopics: 14, lessonType: 'Test' }
+      ],
+      completedChapters: 3,
+      totalChapters: 4,
+      progress: 74
+    },
+    {
+      id: 'science-10',
+      name: 'Science',
+      icon: '🔬',
+      chapters: [
+        { id: 'sc1', name: 'Chemical Reactions', progress: 88, completedTopics: 9, totalTopics: 10, lessonType: 'Learn' },
+        { id: 'sc2', name: 'Light', progress: 73, completedTopics: 7, totalTopics: 9, lessonType: 'Practice' },
+        { id: 'sc3', name: 'Life Processes', progress: 69, completedTopics: 8, totalTopics: 11, lessonType: 'Video' }
+      ],
+      completedChapters: 2,
+      totalChapters: 3,
+      progress: 77
+    },
+    {
+      id: 'social-10',
+      name: 'Social Science',
+      icon: '🌍',
+      chapters: [
+        { id: 'ss1', name: 'Nationalism', progress: 68, completedTopics: 7, totalTopics: 10, lessonType: 'Learn' },
+        { id: 'ss2', name: 'Resources', progress: 72, completedTopics: 8, totalTopics: 10, lessonType: 'Quiz' }
+      ],
+      completedChapters: 1,
+      totalChapters: 2,
+      progress: 70
+    }
+  ],
+  'Class 12': [
+    {
+      id: 'physics-12',
+      name: 'Physics',
+      icon: '⚡',
+      chapters: [
+        { id: 'p1', name: 'Electrostatics', progress: 85, completedTopics: 9, totalTopics: 10, lessonType: 'Learn' },
+        { id: 'p2', name: 'Current Electricity', progress: 80, completedTopics: 8, totalTopics: 10, lessonType: 'Video' },
+        { id: 'p3', name: 'Ray Optics', progress: 66, completedTopics: 7, totalTopics: 11, lessonType: 'Practice' }
+      ],
+      completedChapters: 2,
+      totalChapters: 3,
+      progress: 77
+    },
+    {
+      id: 'maths-12',
+      name: 'Mathematics',
+      icon: '∑',
+      chapters: [
+        { id: 'm12-1', name: 'Integrals', progress: 76, completedTopics: 8, totalTopics: 10, lessonType: 'Quiz' },
+        { id: 'm12-2', name: 'Differentiation', progress: 83, completedTopics: 9, totalTopics: 10, lessonType: 'Video' }
+      ],
+      completedChapters: 1,
+      totalChapters: 2,
+      progress: 80
+    }
+  ]
+};
+
+export const STUDENT_ASSIGNMENTS: any[] = [
+  { id: 'a1', title: 'Fractions Practice Sheet', classLevel: 'Class 5', subject: 'Mathematics', chapter: 'Fractions', dueDate: '2026-08-18', status: 'Pending', marks: 20 },
+  { id: 'a2', title: 'Chemical Reactions Worksheet', classLevel: 'Class 10', subject: 'Science', chapter: 'Chemical Reactions', dueDate: '2026-08-16', status: 'Submitted', marks: 25 },
+  { id: 'a3', title: 'Electrostatics Assignment', classLevel: 'Class 12', subject: 'Physics', chapter: 'Electrostatics', dueDate: '2026-08-20', status: 'Late', marks: 30 }
+];
+
+export const STUDENT_QUIZZES: any[] = [
+  {
+    id: 'q1',
+    title: 'Fractions Quick Quiz',
+    subject: 'Mathematics',
+    chapter: 'Fractions',
+    classLevel: 'Class 5',
+    timeLimit: 15,
+    questions: [
+      { id: 'q1-1', question: '1/2 + 1/2 = ?', options: ['1', '1/4', '2', '1/3'], answer: '1', explanation: 'When numerators are equal and denominators same, sum them.' },
+      { id: 'q1-2', question: 'Which is greater: 3/4 or 2/3?', options: ['3/4', '2/3', 'Equal', 'Cannot compare'], answer: '3/4', explanation: '3/4 = 0.75 and 2/3 = 0.66.' }
+    ]
+  }
+];
+
+export const STUDENT_TESTS: any[] = [
+  { id: 't1', title: 'Chapter Test: Real Numbers', subject: 'Mathematics', chapter: 'Real Numbers', classLevel: 'Class 10', totalMarks: 40, timeLimit: 45 }
+];
+
+export const TODAY_CLASSES = [
+  { subject: 'Mathematics', teacher: 'Dr. Ramesh Sharma', topic: 'Quadratic Equations', date: 'Today', startTime: '09:30 AM', endTime: '10:10 AM', status: 'Live Now' },
+  { subject: 'Science', teacher: 'Prof. Neha Gupta', topic: 'Chemical Reactions', date: 'Today', startTime: '11:00 AM', endTime: '11:45 AM', status: 'Upcoming' },
+  { subject: 'English', teacher: 'Sarah Jenkins', topic: 'Grammar Correction', date: 'Today', startTime: '02:00 PM', endTime: '02:40 PM', status: 'Completed' }
+];
+
+export const STUDENT_PROGRESS = {
+  overall: 76,
+  subjectWise: [
+    { name: 'Mathematics', value: 82 },
+    { name: 'Science', value: 77 },
+    { name: 'English', value: 71 },
+    { name: 'Social Science', value: 68 }
+  ],
+  chapterWise: [
+    { name: 'Numbers', value: 88 },
+    { name: 'Fractions', value: 70 },
+    { name: 'Geometry', value: 63 },
+    { name: 'Measurement', value: 81 }
+  ]
+};
+
+export const MOCK_REVIEWS = [
+  {
+    name: 'Rohan Deshmukh',
+    role: 'Class 10 Student',
+    text: 'Dr. Ramesh Sharma\'s math classes made quadratic equations feel like a game! The AI chatbot helped me clear doubts at 11 PM.',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150'
+  },
+  {
+    name: 'Suhani Malhotra',
+    role: 'Class 12 Student',
+    text: 'The interactive WebRTC classrooms let us speak directly with the teacher. I got 98% in my Board exams thanks to physics lectures.',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150'
+  },
+  {
+    name: 'Harish Kumar',
+    role: 'Parent of Class 8 Student',
+    text: 'The progress dashboard keeps us updated on completed hours and overall test ratings. Best online platform and and very easy to navigate!',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150'
+  }
 ];
 
 export const INITIAL_COURSES: Course[] = [
@@ -298,29 +490,5 @@ export const GENERAL_FAQS = [
   {
     question: 'Is there a simulated payment flow integrated?',
     answer: 'Yes, each subscription plan has an integrated Razorpay mock checkout dialog. It collects student credentials and instantly updates the account tier state to let you test Premium capabilities.'
-  }
-];
-
-export const MOCK_REVIEWS = [
-  {
-    name: 'Rohan Deshmukh',
-    role: 'Class 10 Student',
-    text: 'Dr. Ramesh Sharma\'s math classes made quadratic equations feel like a game! The AI chatbot helped me clear doubts at 11 PM.',
-    rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150'
-  },
-  {
-    name: 'Suhani Malhotra',
-    role: 'Class 12 Student',
-    text: 'The interactive WebRTC classrooms let us speak directly with the teacher. I got 98% in my Board exams thanks to physics lectures.',
-    rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150'
-  },
-  {
-    name: 'Harish Kumar',
-    role: 'Parent of Class 8 Student',
-    text: 'The progress dashboard keeps us updated on completed hours and overall test ratings. Best online platform and and very easy to navigate!',
-    rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150'
   }
 ];
